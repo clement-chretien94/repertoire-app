@@ -1,10 +1,18 @@
-import {View, Text} from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import WordDetails from '../../components/WordDetails/WordDetails';
+import DefinitionList from '../../components/DefinitionList/DefinitionList';
 
-const RepertoireScreen = () => {
+const Stack = createStackNavigator();
+
+const RepertoireScreen = ({data, setData}) => {
+
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text>Repertoire Screen</Text>
-        </View>
+        <>
+            <Stack.Navigator initialRouteName='DefinitionList'>
+                <Stack.Screen name="DefinitionList" children={() => <DefinitionList data={data} setData={setData}/>} options={{headerShown: false}}/>
+                <Stack.Screen name="WordDetails" component={WordDetails}/>
+            </Stack.Navigator>
+        </>
     );
 }
 
